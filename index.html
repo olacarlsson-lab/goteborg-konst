@@ -559,9 +559,23 @@
       margin-bottom: 8px;
     }
 
+    .card-artist a.field-link {
+      display: inline-block;
+      -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2);
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: manipulation;
+      padding: 8px 4px;
+      margin: -8px -4px;
+    }
+
     .card-artist a.field-link:hover {
       text-decoration: underline;
       cursor: pointer;
+    }
+
+    .card-artist a.field-link:active {
+      opacity: 0.7;
     }
 
     .kv {
@@ -598,10 +612,21 @@
       text-decoration: none;
       cursor: pointer;
       margin-right: 3px;
+      display: inline-block;
+      -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2);
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: manipulation;
+      padding: 8px 4px;
+      margin: -8px -4px;
     }
 
     .v a.field-link:hover {
       text-decoration: underline;
+    }
+
+    .v a.field-link:active {
+      opacity: 0.7;
     }
 
     /* + / − bredvid länkarna */
@@ -2271,21 +2296,23 @@
           artistEl.className = 'card-artist';
 
           const creatorLink = document.createElement('a');
-          creatorLink.href = '#';
+          creatorLink.href = 'javascript:void(0)';
           creatorLink.textContent = creator;
           creatorLink.className = 'field-link';
           creatorLink.style.color = 'inherit';
           creatorLink.style.textDecoration = 'none';
 
-          creatorLink.addEventListener('click', (e) => {
+          creatorLink.onclick = (e) => {
             e.preventDefault();
+            e.stopPropagation();
             clearAllFilters();
             const fieldEl = document.getElementById('creatorInput');
             if (fieldEl) {
               fieldEl.value = creator;
             }
             runSearchFromForm();
-          });
+            return false;
+          };
 
           artistEl.appendChild(creatorLink);
           card.appendChild(artistEl);
@@ -2327,13 +2354,14 @@
             ops.className = 'filter-ops';
 
             const link = document.createElement('a');
-            link.href = '#';
+            link.href = 'javascript:void(0)';
             link.textContent = val;
             link.className = 'field-link';
 
             // Klick på själva länken: nollställ andra filter och sök bara på detta värde
-            link.addEventListener('click', (e) => {
+            link.onclick = (e) => {
               e.preventDefault();
+              e.stopPropagation();
 
               const targetKey = filterKey;
               let targetVal = val.toString().trim();
@@ -2359,7 +2387,8 @@
               }
 
               runSearchFromForm();
-            });
+              return false;
+            };
 
             ops.appendChild(link);
 
