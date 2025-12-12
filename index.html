@@ -10,64 +10,74 @@
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/png" href="./icon-192.png">
   <link rel="apple-touch-icon" href="./icon-192.png">
-  <meta name="theme-color" content="#020617" />
+  <meta name="theme-color" content="#0076bc" />
+
+  <!-- Google Fonts - Open Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --brand: #38bdf8;
-      --brand-dark: #0ea5e9;
+      --gbg-blue: #0076bc;
+      --gbg-dark-blue: #3f5564;
+      --gbg-black: #1F1F1F;
+      --gbg-web-black: #333333;
+      --gbg-gray: #ebebeb;
+      --brand: #0076bc;
+      --brand-dark: #005a92;
     }
 
     /* DARK THEME */
     :root[data-theme="dark"] {
-      --body-bg: radial-gradient(circle at top, #0f172a 0, #020617 38%, #020617 100%);
-      --header-bg: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4), transparent 80%);
-      --text-main: #f3f4f6; /* Improved from #e5e7eb for better contrast */
-      --text-muted: #d1d5db; /* Improved from #9ca3af for WCAG AA compliance (4.5:1 on dark bg) */
+      --body-bg: radial-gradient(circle at top, #1a2530 0, #0d1117 38%, #0d1117 100%);
+      --header-bg: linear-gradient(to bottom, rgba(26, 37, 48, 0.95), rgba(26, 37, 48, 0.5), transparent 80%);
+      --text-main: #ffffff;
+      --text-muted: #e0e0e0;
 
-      --panel-bg: rgba(15, 23, 42, 0.95);
-      --card-bg: rgba(15, 23, 42, 0.95);
-      --chip-bg: #0f172a;
+      --panel-bg: rgba(26, 37, 48, 0.98);
+      --card-bg: rgba(31, 31, 31, 0.98);
+      --chip-bg: #1F1F1F;
 
-      --border-soft: #374151; /* Improved from #1f2937 for better visibility */
-      --border-strong: #4b5563; /* Improved from #1e293b */
+      --border-soft: #4a5a6a;
+      --border-strong: #6a7a8a;
 
-      --field-bg: #020617;
+      --field-bg: #1a2530;
 
-      --btn-primary-fg: #0b1020;
-      --btn-secondary-bg: #020617;
-      --btn-secondary-border: #374151;
-      --btn-secondary-fg: #d1d5db; /* Improved contrast */
+      --btn-primary-fg: #ffffff;
+      --btn-secondary-bg: #1F1F1F;
+      --btn-secondary-border: #4a5a6a;
+      --btn-secondary-fg: #ffffff;
 
-      --selection-add-bg: #022c22;
-      --selection-add-fg: #bbf7d0;
-      --selection-add-border: #064e3b;
+      --selection-add-bg: #0076bc;
+      --selection-add-fg: #ffffff;
+      --selection-add-border: #0099e6;
     }
 
     /* LIGHT THEME */
     :root[data-theme="light"] {
-      --body-bg: linear-gradient(to bottom, #f5f7fa 0%, #e8ecf1 100%);
-      --header-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.85), transparent 80%);
-      --text-main: #0f172a; /* Improved from #1e293b for better contrast */
-      --text-muted: #475569; /* Improved from #64748b for WCAG AA compliance */
+      --body-bg: linear-gradient(to bottom, #ffffff 0%, #ebebeb 100%);
+      --header-bg: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(235, 235, 235, 0.85), transparent 80%);
+      --text-main: #333333;
+      --text-muted: #5a6f7f;
 
-      --panel-bg: #f8fafc;
+      --panel-bg: #ffffff;
       --card-bg: #ffffff;
-      --chip-bg: #e2e8f0;
+      --chip-bg: #ebebeb;
 
-      --border-soft: #cbd5e1;
-      --border-strong: #64748b; /* Improved from #94a3b8 */
+      --border-soft: #d0d0d0;
+      --border-strong: #a0a0a0;
 
-      --field-bg: #f1f5f9;
+      --field-bg: #f5f5f5;
 
-      --btn-primary-fg: #f8fafc;
-      --btn-secondary-bg: #f1f5f9;
-      --btn-secondary-border: #cbd5e1;
-      --btn-secondary-fg: #334155; /* Improved from #475569 for better contrast */
+      --btn-primary-fg: #ffffff;
+      --btn-secondary-bg: #ebebeb;
+      --btn-secondary-border: #d0d0d0;
+      --btn-secondary-fg: #333333;
 
-      --selection-add-bg: #f0fdf4;
-      --selection-add-fg: #14532d; /* Improved from #166534 for better contrast */
-      --selection-add-border: #86efac;
+      --selection-add-bg: #e6f3fb;
+      --selection-add-fg: #005a92;
+      --selection-add-border: #0076bc;
     }
 
     * {
@@ -75,7 +85,7 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       margin: 0;
       background: var(--body-bg);
       color: var(--text-main);
@@ -2402,8 +2412,8 @@
           const v = document.createElement('div');
           v.className = 'v';
 
-          // Gör vissa fält klickbara: creator, created, artform, artmedium
-          if (['creator', 'created', 'artform', 'artmedium'].includes(filterKey) && val) {
+          // Gör vissa fält klickbara: creator, created, artform
+          if (['creator', 'created', 'artform'].includes(filterKey) && val) {
             const ops = document.createElement('span');
             ops.className = 'filter-ops';
 
